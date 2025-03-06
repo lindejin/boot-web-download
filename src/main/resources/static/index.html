@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel文件下载</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <style>
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .title {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .radio-group {
+            margin-bottom: 20px;
+            text-align: left;
+            padding: 0 20px;
+        }
+        .radio-group label {
+            display: block;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+        .radio-group input[type="radio"] {
+            margin-right: 10px;
+        }
+        .btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        #progress {
+            display: none;
+            margin: 20px 0;
+            color: #666;
+        }
+        #errorMessage {
+            display: none;
+            margin: 20px 0;
+            color: #dc3545;
+            padding: 10px;
+            background-color: #f8d7da;
+            border-radius: 4px;
+        }
+    </style>
+    <script type="module">
+        import { downloadWithFetchPost, triggerDownload } from './js/downloadService.js';
+
+        $(document).ready(function() {
+            $('#downloadBtn').click(function() {
+                const $btn = $(this);
+                const $progress = $('#progress');
+                const $error = $('#errorMessage');
+
+                // 重置界面状态
+                $error.hide();
+                $progress.show();
+                $btn.prop('disabled', true);
+
+                // 获取用户选择的操作类型
+                const action = $('input[name="action"]:checked').val();
+
+                // 使用Fetch API POST方式实现的下载方法
+                downloadWithFetchPost('/api/files/download', { action })
+                    .then(blob => {
+                        triggerDownload(blob, 'large_data.xlsx');
+                    })
+                    .catch(error => {
+                        $error.text(error.message).show();
+                    })
+                    .finally(() => {
+                        $progress.hide();
+                        $btn.prop('disabled', false);
+                    });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Excel文件下载</h1>
+        <div class="radio-group">
+            <label>
+                <input type="radio" name="action" value="simple" checked>
+                简单数据下载（100行）
+            </label>
+            <label>
+                <input type="radio" name="action" value="large">
+                大数据下载（100,000行）
+            </label>
+            <label>
+                <input type="radio" name="action" value="error">
+                触发异常下载
+            </label>
+        </div>
+        <button id="downloadBtn" class="btn">开始下载</button>
+        <div id="progress">正在处理，请稍候...</div>
+        <div id="errorMessage"></div>
+    </div>
+</body>
+</html>
