@@ -10,9 +10,9 @@
     </parent>
 
     <groupId>com.example</groupId>
-    <artifactId>demo01</artifactId>
+    <artifactId>boot-web-download</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>demo01</name>
+    <name>boot-web-download</name>
     <description>Spring Boot File Download Demo</description>
 
     <properties>
