@@ -1,6 +1,7 @@
-package com.example.demo.utils;
+package com.rch.download;
 
 
+import com.rch.download.utils.PolandNotation;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

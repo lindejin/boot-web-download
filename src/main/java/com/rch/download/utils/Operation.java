@@ -1,4 +1,4 @@
-package com.example.demo.utils;
+package com.rch.download.utils;
 
 /**
  * 运算符优先级

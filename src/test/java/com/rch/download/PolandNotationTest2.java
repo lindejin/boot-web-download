@@ -1,5 +1,6 @@
-package com.example.demo.utils;
+package com.rch.download;
 
+import com.rch.download.utils.PolandNotation;
 import org.apache.commons.jexl3.JexlBuilder;
 import org.apache.commons.jexl3.JexlEngine;
 import org.apache.commons.jexl3.JexlExpression;

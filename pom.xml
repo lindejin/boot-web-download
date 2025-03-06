@@ -9,7 +9,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.example</groupId>
+    <groupId>com.rch.download</groupId>
     <artifactId>boot-web-download</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>boot-web-download</name>
