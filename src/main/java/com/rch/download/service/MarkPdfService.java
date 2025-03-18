@@ -53,6 +53,7 @@ public class MarkPdfService {
 
             // 1. 顶部行（包含箱号/箱数、条码和美标识）
             Table topTable = new Table(new float[]{1, 3.5f, 0.5f});
+            topTable.setFixedLayout(); // 关键代码：强制固定列宽
             topTable.setWidth(UnitValue.createPercentValue(100));
             topTable.setBorder(new SolidBorder(0.5f));
 
@@ -92,7 +93,7 @@ public class MarkPdfService {
             Table beautyTable = new Table(new float[]{1});
             beautyTable.setWidth(UnitValue.createPercentValue(100));
             beautyTable.addCell(new Cell().add(new Paragraph("").setFontSize(10)).setBorder(null).setPadding(1));
-            beautyTable.addCell(new Cell().add(new Paragraph("美").setFontSize(28).setTextAlignment(TextAlignment.CENTER).setBold()).setBorder(null).setPadding(1));
+            beautyTable.addCell(new Cell().add(new Paragraph("美").setFontSize(21).setTextAlignment(TextAlignment.CENTER).setBold()).setBorder(null).setPadding(1));
             beautyCell.add(beautyTable);
             beautyCell.setVerticalAlignment(com.itextpdf.layout.properties.VerticalAlignment.MIDDLE);
             topTable.addCell(beautyCell.setBorder(new SolidBorder(0.5f)).setPadding(2));
@@ -120,6 +121,7 @@ public class MarkPdfService {
 
             // 创建两列布局表格
             Table infoTable = new Table(new float[]{1, 1});
+            topTable.setFixedLayout(); // 关键代码：强制固定列宽
             infoTable.setWidth(UnitValue.createPercentValue(100));
             infoTable.setBorder(new SolidBorder(0.5f));
 
@@ -128,7 +130,7 @@ public class MarkPdfService {
             leftColumn.setWidth(UnitValue.createPercentValue(100));
             leftColumn.addCell(new Cell().add(new Paragraph("仓库编码：" + containerNo)
                     .setFontSize(10).setTextAlignment(TextAlignment.LEFT)).setBorder(new SolidBorder(0.5f)).setPadding(3));
-            leftColumn.addCell(new Cell().add(new Paragraph("预约时间：" + appointmentTime)
+            leftColumn.addCell(new Cell().add(new Paragraph("预约时间：" )
                     .setFontSize(10).setTextAlignment(TextAlignment.LEFT)).setBorder(new SolidBorder(0.5f)).setPadding(3));
             infoTable.addCell(new Cell().add(leftColumn).setBorder(new SolidBorder(0.5f)).setPadding(2));
 
@@ -137,7 +139,7 @@ public class MarkPdfService {
             rightColumn.setWidth(UnitValue.createPercentValue(100));
             rightColumn.addCell(new Cell().add(new Paragraph("SKU数量/总件数：" + skuCount + "/1")
                     .setFontSize(10).setTextAlignment(TextAlignment.LEFT)).setBorder(new SolidBorder(0.5f)).setPadding(3));
-            rightColumn.addCell(new Cell().add(new Paragraph("物流单号：" + logisticsNo)
+            rightColumn.addCell(new Cell().add(new Paragraph("物流单号：" )
                     .setFontSize(10).setTextAlignment(TextAlignment.LEFT)).setBorder(new SolidBorder(0.5f)).setPadding(3));
             infoTable.addCell(new Cell().add(rightColumn).setBorder(new SolidBorder(0.5f)).setPadding(2));
 
