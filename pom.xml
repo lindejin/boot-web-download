@@ -78,6 +78,28 @@
             <artifactId>hutool-all</artifactId>
             <version>5.8.23</version>
         </dependency>
+
+
+        <!-- 导入iText核心坐标，主要操作PDF的读写功能 -->
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itext-core</artifactId>
+            <version>8.0.4</version>
+            <type>pom</type>
+        </dependency>
+        <!-- 导入iText加密依赖适配器，提供对PDF的加密功能 -->
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>bouncy-castle-adapter</artifactId>
+            <version>8.0.4</version>
+        </dependency>
+        <!-- 导入iText二维码和条形码生成功能坐标 -->
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>barcodes</artifactId>
+            <version>8.0.4</version>
+        </dependency>
+
     </dependencies>
 
     <build>
