@@ -1,5 +1,7 @@
 # 服务器配置
 server:
+  application:
+    name: ch
   port: 8080
   servlet:
     encoding:
