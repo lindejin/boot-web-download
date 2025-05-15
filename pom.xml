@@ -13,13 +13,17 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>ch</name>
     <description>ch</description>
+    <!--    <url> 项目主页地址 -->
     <url/>
+    <!--    <licenses> 许可证声明 -->
     <licenses>
         <license/>
     </licenses>
+    <!--    <developers> 开发者信息 -->
     <developers>
         <developer/>
     </developers>
+    <!--    <scm> 版本控制配置-->
     <scm>
         <connection/>
         <developerConnection/>
@@ -53,14 +57,38 @@
         </dependency>
 
         <!-- Apache POI for Excel processing -->
+        <!--        1. 核心基础模块（必选） -->
+        <!-- POI核心库（处理HSSF/XSSF通用功能） -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
             <version>5.4.1</version>
         </dependency>
+        <!-- Office Open XML支持（处理.xlsx/.docx等OOXML格式） -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
+            <version>5.4.1</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-io</artifactId>
+                    <groupId>commons-io</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.18.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <!--        2. 格式扩展模块（按需选配）-->
+
+        <!--        3. 高级功能模块-->
+        <!-- 大数据量Excel处理（SXSSF流式API） -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml-full</artifactId>
             <version>5.4.1</version>
         </dependency>
         <!-- Apache Commons JEXL for expression evaluation -->
