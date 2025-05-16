@@ -10,9 +10,7 @@ server:
 
 # 日志配置
 logging:
-  level:
-    root: INFO
-    com.example.demo01: DEBUG
+  config: classpath:logback-spring.xml
 
 # 文件上传配置
 spring:
@@ -28,3 +26,11 @@ spring:
       exclude: static/**,public/**
     livereload:
       enabled: true
+  # 配置 ANSI 输出
+  output:
+    ansi:
+      # 有三个可选值：DETECT / ALWAYS / NEVER
+      # DETECT - 检查终端是否支持 ANSI，是的话就启用彩色输出，默认值
+      # ALWAYS - 不检查，总是彩色输出
+      # NEVER - 禁用彩色输出
+      enabled: ALWAYS
